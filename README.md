@@ -1,1 +1,1 @@
-Every Quest Completed Nihas!
+Done!
