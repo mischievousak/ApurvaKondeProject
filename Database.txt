@@ -1,0 +1,59 @@
+-- Create the database if it doesn't already exist
+-- This ensures the script can be run safely multiple times.
+CREATE DATABASE IF NOT EXISTS `subscription` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+-- Switch to using the newly created database for all subsequent commands
+USE `subscription`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+-- This table stores user login credentials, their role ('user' or 'admin'),
+-- and a unique email address for identification.
+--
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `role` VARCHAR(10) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+-- This table stores all subscription details for each user, including the
+-- category, plan type, and key dates. It is linked to the `users` table.
+--
+DROP TABLE IF EXISTS `subscriptions`;
+CREATE TABLE `subscriptions` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `service_name` VARCHAR(100) NOT NULL,
+  `cost` DECIMAL(10, 2) NOT NULL,
+  `category` VARCHAR(100) NOT NULL,
+  `subscription_date` DATE NOT NULL,
+  `renewal_date` DATE NOT NULL,
+  `plan_type` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--For Forgot Password--
+CREATE TABLE `password_resets` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255) NOT NULL,
+  `token` VARCHAR(255) NOT NULL,
+  `expires_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `token` (`token`)
+);

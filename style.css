@@ -1,0 +1,264 @@
+/* --- CSS Variables for Easy Theme Customization --- */
+:root {
+    --page-bg: #f9fbff;
+    --container-bg: #ffffff;
+    --primary-accent: #5a8dec;
+    --primary-accent-hover: #4a78cc;
+    --danger-accent: #e57373;
+    --danger-accent-hover: #d32f2f;
+    --border-color: #eef2f7;
+    --text-primary: #3d4852;
+    --text-secondary: #8795a1;
+    --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* --- General Body & Typography --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--page-bg);
+    color: var(--text-primary);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+}
+
+/* --- Main Content Container --- */
+.container {
+    width: 100%;
+    background-color: var(--container-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.container:has(.page-header) {
+    max-width: 1200px;
+    align-self: flex-start;
+    padding: 3rem;
+}
+
+.container:not(:has(.page-header)) {
+    max-width: 420px;
+}
+
+/* --- Headers & Links --- */
+h1, h2, h3 {
+    color: var(--text-primary);
+    text-align: center;
+    margin: 0 0 2rem 0;
+    font-weight: 600;
+}
+h3 {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: var(--primary-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: var(--primary-accent-hover);
+    text-decoration: underline;
+}
+
+/* --- Statistics Section --- */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background-color: #fcfdff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-title {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* --- Forms & Inputs --- */
+.subscription-form {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    margin-bottom: 3rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background-color: var(--page-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: all 0.2s ease;
+}
+
+select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238795a1%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20127.9c3.6%203.6%207.8%205.4%2013%205.4s9.4-1.8%2013-5.4L287%2095.2c3.6-3.6%205.4-7.8%205.4-13%200-5-1.8-9.4-5.4-13z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1rem top 50%;
+    background-size: 0.65em auto;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 3px rgba(90, 141, 236, 0.2);
+    background-color: var(--container-bg);
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 0.85rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+.btn-primary {
+    background-color: var(--primary-accent);
+    color: #ffffff;
+}
+.btn-primary:hover { background-color: var(--primary-accent-hover); }
+
+table .btn {
+    width: auto;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+.btn-danger {
+    background-color: var(--danger-accent);
+    color: #ffffff;
+}
+.btn-danger:hover { background-color: var(--danger-accent-hover); }
+
+/* --- Tables & Layout --- */
+.table-responsive { overflow-x: auto; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+th, td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+th {
+    background-color: #fcfdff;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+tbody tr:hover { background-color: #f9fbff; }
+
+/* --- Utilities & Page Structure --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.page-header h1 { margin: 0; }
+.dashboard-section {
+    margin-bottom: 4rem;
+}
+.dashboard-section:last-child { margin-bottom: 0; }
+.dashboard-section h2 {
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.text-center { text-align: center; }
+.message {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+}
+.success {
+    background-color: #f0fff4;
+    border-color: #a7f3d0;
+    color: #2f855a;
+}
+.error {
+    background-color: #fff5f5;
+    border-color: #fed7d7;
+    color: #c53030;
+}
+
+/* ... at the end of the file ... */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Custom rule for a more compact button */
+.btn-compact {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+}
